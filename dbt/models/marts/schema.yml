@@ -1,0 +1,59 @@
+version: 2
+models:
+  - name: stg_voos
+    description: "Tipos explícitos; horários civis em Brasília, sem conversão para UTC."
+    columns:
+      - name: voo_id
+        data_tests: [unique, not_null]
+      - name: situacao
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [REALIZADO, CANCELADO, NAO INFORMADO]
+  - name: int_indicadores_voos
+    description: "Elegibilidade explícita. Limite analítico próprio: atraso estritamente acima de 15 min."
+  - name: dim_companhia
+    description: "Chave natural ICAO; primeiro nome em ordem lexical e contagem de variantes."
+    columns:
+      - name: empresa_icao
+        data_tests: [not_null, unique]
+  - name: dim_aeroporto
+    description: "Dimensão com papéis de origem e destino. GIG/SDU não representa todos os aeroportos do RJ."
+    columns:
+      - name: aeroporto_icao
+        data_tests: [not_null, unique]
+  - name: dim_data
+    description: "Dias observados no escopo; não é um calendário completo."
+    columns:
+      - name: data_voo
+        data_tests: [not_null, unique]
+  - name: fct_voos
+    description: "Uma etapa de voo aceita. Preserva hash e linha para auditoria na fonte."
+    columns:
+      - name: voo_id
+        description: "SHA-256 da chave natural, sem usar horários reais quando existe partida prevista."
+        data_tests: [not_null, unique]
+      - name: empresa_icao
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: "ref('dim_companhia')", field: empresa_icao}
+      - name: origem_icao
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: "ref('dim_aeroporto')", field: aeroporto_icao}
+      - name: destino_icao
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: "ref('dim_aeroporto')", field: aeroporto_icao}
+      - name: data_voo
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: "ref('dim_data')", field: data_voo}
+      - name: source_sha256
+        data_tests: [not_null]
+  - name: mart_rotas_mensal
+    description: "Agregação mensal. Reagrupar somando numeradores/denominadores; nunca média de taxas."

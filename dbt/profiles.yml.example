@@ -1,0 +1,19 @@
+observatorio_aereo:
+  target: "{{ env_var('DBT_TARGET', 'duckdb') }}"
+  outputs:
+    duckdb:
+      type: duckdb
+      path: "{{ env_var('OBS_DUCKDB_PATH') }}"
+      schema: analytics
+      threads: 2
+    bigquery:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID', 'projeto-nao-configurado') }}"
+      dataset: vra_analytics
+      location: US
+      threads: 1
+      priority: interactive
+      maximum_bytes_billed: 1000000000
+      job_execution_timeout_seconds: 180
+      job_retries: 0

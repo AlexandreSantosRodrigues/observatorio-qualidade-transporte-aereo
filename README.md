@@ -66,4 +66,3 @@ O comando de ingestão baixa diretamente o arquivo oficial. `--arquivo caminho.c
 | GCS, Pub/Sub, processamento em tempo real | Não cobertos neste projeto |
 
 Os workflows de [qualidade](.github/workflows/qualidade.yml), [carga manual da ANAC](.github/workflows/carga-anac.yml) e [documentação opcional](.github/workflows/publicar-documentacao.yml) separam testes sintéticos de dados oficiais. A publicação de documentação por GitHub Pages é manual e usa **somente a fixture sintética**; exige habilitar Pages nas configurações do repositório. Nenhum workflow publica dados brutos nem armazena credenciais GCP. Consulte a fonte [VRA da ANAC](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/voo-regular-ativo-vra/62-voo-regular-ativo-vra).
-

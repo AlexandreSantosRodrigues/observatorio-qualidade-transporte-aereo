@@ -1,0 +1,13 @@
+version: 2
+sources:
+  - name: vra
+    description: "Linhas aceitas pelo contrato Python; rejeitadas ficam na quarentena e manifesto."
+    schema: "{{ 'vra_bronze' if target.type == 'bigquery' else 'bronze' }}"
+    tables:
+      - name: voos
+        description: "Uma etapa de voo por chave natural; substituição mensal auditada."
+        columns:
+          - name: voo_id
+            data_tests: [not_null, unique]
+          - name: source_sha256
+            data_tests: [not_null]

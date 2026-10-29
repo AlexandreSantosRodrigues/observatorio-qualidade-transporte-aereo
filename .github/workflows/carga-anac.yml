@@ -1,0 +1,38 @@
+name: Validar um mês oficial da ANAC
+on:
+  workflow_dispatch:
+    inputs:
+      competencia:
+        description: 'Competência AAAA-MM'
+        default: '2025-01'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      COMPETENCIA: ${{ inputs.competencia }}
+      DBT_SEND_ANONYMOUS_USAGE_STATS: 'false'
+      DO_NOT_TRACK: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - name: Baixar e validar a competência
+        run: |
+          observatorio ingest --competencia "$COMPETENCIA"
+          python -m observatorio.workflow
+      - uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-anac
+          retention-days: 3
+          path: |
+            data/exports/*/evidencias.json
+            data/exports/*/resumo.json
+            data/exports/*/mart_rotas_mensal.csv

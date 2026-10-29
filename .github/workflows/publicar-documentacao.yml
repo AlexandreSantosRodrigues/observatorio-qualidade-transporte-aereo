@@ -1,0 +1,42 @@
+name: Publicar documentação dbt (opcional)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validar-e-preparar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DBT_SEND_ANONYMOUS_USAGE_STATS: 'false'
+      DO_NOT_TRACK: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest -q
+      - run: |
+          observatorio ingest --competencia 2025-01 --arquivo tests/fixtures/vra_sintetico.csv --root data/demo
+          python -m observatorio.workflow --root data/demo
+          mkdir -p data/pages
+          cp dbt/target/static_index.html data/pages/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: data/pages
+  publicar:
+    needs: validar-e-preparar
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar documentação validada
+        id: deployment
+        uses: actions/deploy-pages@v4

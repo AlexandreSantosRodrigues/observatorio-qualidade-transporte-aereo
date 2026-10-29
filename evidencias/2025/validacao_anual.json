@@ -1,0 +1,227 @@
+{
+  "periodo": "2025-01 a 2025-12",
+  "motor": "DuckDB local",
+  "gcp_executado": false,
+  "origem": "arquivos CSV baixados diretamente da URL oficial e ingeridos via --arquivo; recibos de download verificados por SHA-256",
+  "reconciliacao": {
+    "source_rows": 1005807,
+    "accepted_rows": 1004900,
+    "quarantine_rows": 905,
+    "exact_duplicate_rows": 2
+  },
+  "motivos_quarentena": {
+    "fora_competencia": 334,
+    "chave_conflitante": 108,
+    "tipo_linha_invalido": 463
+  },
+  "indicadores": {
+    "etapas": 1004900,
+    "companhias": 111,
+    "dias": 365,
+    "realizadas": 977718,
+    "canceladas": 27182,
+    "planejadas": 976796,
+    "canceladas_planejadas": 27182,
+    "elegiveis_chegada": 949614,
+    "atrasos_chegada_15": 152260,
+    "etapas_gig_sdu": 177888,
+    "taxa_cancelamento": 0.027827714282204267,
+    "pontualidade_chegada_15": 0.8396611675901998
+  },
+  "dbt": {
+    "modelos": 7,
+    "testes": 26,
+    "falhas": 0
+  },
+  "fontes": [
+    {
+      "competencia": "2025-01",
+      "source_sha256": "136a737d61d17a51f1e7a4dd085316501a5d104f23fd903acde1d346d4dad42e",
+      "source_bytes": 27714618,
+      "source_rows": 89616,
+      "accepted_rows": 89590,
+      "quarantine_rows": 26,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "fora_competencia": 26
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "7b4627b12c879b62b0dc1311cba041c4af4f0f6b3f7d68d69deb02196a407584",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_01.csv"
+    },
+    {
+      "competencia": "2025-02",
+      "source_sha256": "92330370c9672f2b85989e689552f79eeb965d9e7de3ad7832140a911b062bbb",
+      "source_bytes": 24489583,
+      "source_rows": 78930,
+      "accepted_rows": 78901,
+      "quarantine_rows": 29,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "fora_competencia": 29
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "1282280f272484f1042652ddaabe41e305e049e5443ee417677892f9c30b1eef",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_02.csv"
+    },
+    {
+      "competencia": "2025-03",
+      "source_sha256": "fed54cf656b549575a44488c0252d705b9dfce570ca9e1ce671dc61799464662",
+      "source_bytes": 25553949,
+      "source_rows": 82048,
+      "accepted_rows": 81997,
+      "quarantine_rows": 51,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "fora_competencia": 25,
+        "chave_conflitante": 26
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "fc21ab9dcbb94bdebc23dd1d9b1ca1923116d73277c6639dff4383796c29bd53",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_03.csv"
+    },
+    {
+      "competencia": "2025-04",
+      "source_sha256": "99a7da7710f189e53b155971a27859dbc4ecba8f5b39fbf8ebf703506f990c75",
+      "source_bytes": 24987827,
+      "source_rows": 80692,
+      "accepted_rows": 80537,
+      "quarantine_rows": 155,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "tipo_linha_invalido": 124,
+        "fora_competencia": 31
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "b42056f3941c071c961076de2dc260a1e1b579a6e095c54a8c92d3d85c9b47ae",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_04.csv"
+    },
+    {
+      "competencia": "2025-05",
+      "source_sha256": "77e42cd6219873e5cda772c764cb70607298dcedae638adb7c9ddebecc10e316",
+      "source_bytes": 29629469,
+      "source_rows": 82565,
+      "accepted_rows": 82265,
+      "quarantine_rows": 300,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "tipo_linha_invalido": 269,
+        "fora_competencia": 31
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "21b7ec54e152ed5d798dad221768c409afe3245d7278e600f1e5ca0e5590fb2a",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_05.csv"
+    },
+    {
+      "competencia": "2025-06",
+      "source_sha256": "62c4196c9bb19ab40f33f975336acbd23136ec85f9ceb7ba547393e13b35cfe1",
+      "source_bytes": 25194819,
+      "source_rows": 80974,
+      "accepted_rows": 80907,
+      "quarantine_rows": 67,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "tipo_linha_invalido": 47,
+        "fora_competencia": 20
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "ff7e6fefb94d433d499aa428650cd6f18d55983945e1a3817088b84d2fa713bb",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_06.csv"
+    },
+    {
+      "competencia": "2025-07",
+      "source_sha256": "f28716f7be6beda0395e13f4e0e0490703c7e0e49a14f0e5ad7f8ca52fac2fa4",
+      "source_bytes": 27385299,
+      "source_rows": 87725,
+      "accepted_rows": 87660,
+      "quarantine_rows": 65,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "tipo_linha_invalido": 23,
+        "fora_competencia": 30,
+        "chave_conflitante": 12
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "199d06c090da8d415a2617f6f68b8adf670e2caf21d8f4a615b5f633590dbee5",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_07.csv"
+    },
+    {
+      "competencia": "2025-08",
+      "source_sha256": "5bcc3bc6f093f603d18b65e6d7ddcd88bf2c09cf9d6f0cd1a3e3f4f8b07fd6b9",
+      "source_bytes": 26424608,
+      "source_rows": 84583,
+      "accepted_rows": 84552,
+      "quarantine_rows": 31,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "fora_competencia": 31
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "9f724c87baa267f8990ef0f5734039c734750f83d210ad1deadb22d369b04157",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_08.csv"
+    },
+    {
+      "competencia": "2025-09",
+      "source_sha256": "652723539800eadb4ceede44213d2ee9e114f4beda891c3063c5c1bc27ce8f24",
+      "source_bytes": 25640672,
+      "source_rows": 82156,
+      "accepted_rows": 82130,
+      "quarantine_rows": 26,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "fora_competencia": 26
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "6cd01498e32d01ae71fd0d3d60fa1109eddd034d955d00cff0eb63349a241469",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_09.csv"
+    },
+    {
+      "competencia": "2025-10",
+      "source_sha256": "891342f74744dcda4bece6338c06e26960da22f213ce005eb91dbea63e9086cd",
+      "source_bytes": 26306746,
+      "source_rows": 85709,
+      "accepted_rows": 85661,
+      "quarantine_rows": 48,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "fora_competencia": 30,
+        "chave_conflitante": 18
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "d488e0860cc19ffde5941bc101ceeacbf6201de3e4f108d51e0a4ed3144c1755",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_10.csv"
+    },
+    {
+      "competencia": "2025-11",
+      "source_sha256": "0bd631b163bd45205ce6ab0ba311105efa4716bc72d097944d7f79edbcd3e993",
+      "source_bytes": 25357520,
+      "source_rows": 82245,
+      "accepted_rows": 82177,
+      "quarantine_rows": 68,
+      "exact_duplicate_rows": 0,
+      "quarantine_reasons": {
+        "fora_competencia": 24,
+        "chave_conflitante": 44
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "4ce996de7321fe9608423c57fe536823edcb64f3822c8850b0370b692e8d6067",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_11.csv"
+    },
+    {
+      "competencia": "2025-12",
+      "source_sha256": "6b1eea5a8820d106a7ac43152e126d31163716587c3798ce8d2df89d1550d3b8",
+      "source_bytes": 27595843,
+      "source_rows": 88564,
+      "accepted_rows": 88523,
+      "quarantine_rows": 39,
+      "exact_duplicate_rows": 2,
+      "quarantine_reasons": {
+        "fora_competencia": 31,
+        "chave_conflitante": 8
+      },
+      "contract_sha256": "3748c224df328aa95382d4f6f15b7734cca3363aba5f8f851b1893e6f763da4d",
+      "parquet_sha256": "7dd065e6e5ebe24e31e9e4c8d60b249f446f685b57dbac25dd1778f765f912cc",
+      "official_url": "https://siros.anac.gov.br/siros/registros/diversos/vra/2025/VRA_2025_12.csv"
+    }
+  ]
+}

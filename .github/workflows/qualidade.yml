@@ -1,0 +1,46 @@
+name: Qualidade do pipeline
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qualidade-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DBT_SEND_ANONYMOUS_USAGE_STATS: 'false'
+      DO_NOT_TRACK: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependências fixadas
+        run: python -m pip install -e '.[dev]'
+      - name: Verificar Python e executar testes com dados sintéticos
+        run: |
+          ruff check src tests
+          pytest -q --junitxml=data/ci/pytest.xml
+      - name: Gerar ambiente demonstrativo e documentação dbt
+        run: |
+          observatorio ingest --competencia 2025-01 --arquivo tests/fixtures/vra_sintetico.csv --root data/demo
+          python -m observatorio.workflow --root data/demo
+      - name: Guardar documentação e evidências pequenas
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentacao-e-testes
+          retention-days: 3
+          path: |
+            data/ci/pytest.xml
+            data/demo/exports/*/evidencias.json
+            dbt/target/static_index.html

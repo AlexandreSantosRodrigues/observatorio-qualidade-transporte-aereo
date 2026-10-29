@@ -1,0 +1,16 @@
+name: observatorio_aereo
+version: '0.1.0'
+config-version: 2
+profile: observatorio_aereo
+require-dbt-version: [">=1.10.0", "<1.11.0"]
+model-paths: [models]
+test-paths: [tests]
+macro-paths: [macros]
+models:
+  observatorio_aereo:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
