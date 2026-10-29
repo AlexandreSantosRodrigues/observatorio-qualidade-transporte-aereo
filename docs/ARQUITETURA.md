@@ -81,8 +81,8 @@ destino. Esse desenho foi escrito, mas sua execução no sandbox permanece pende
 
 ## Disponibilidade e limites
 
-O DuckDB não é um substituto de experiência executada em GCP. O adapter
-`dbt-bigquery` e a carga são uma integração separada. O fluxo gratuito inicial não
+Os resultados apresentados neste estudo foram produzidos no DuckDB. O adapter
+`dbt-bigquery` e a carga são uma integração separada, ainda sem resultados de execução. O fluxo gratuito inicial não
 usa GCS, Pub/Sub, Airflow, VMs, trials, Docker, GPU ou conta dbt Cloud.
 
 O Colab não é um serviço de execução contínua: pode interromper sessões. Os dados
