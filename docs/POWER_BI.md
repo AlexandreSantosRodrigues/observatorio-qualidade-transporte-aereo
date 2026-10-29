@@ -11,7 +11,7 @@ executar este projeto sem avaliar as condições.
 Use os CSVs da pasta apontada por `exports/CURRENT.json`. No notebook, essa pasta
 é a variável `EXPORTS`. Para um relatório web simples, comece com
 `mart_rotas_mensal.csv` e as opções de importação disponíveis na sua conta.
-Se não houver caminho de criação gratuito, mantenha este requisito pendente e
+Se não houver caminho de criação gratuito, deixe o relatório para outra etapa e
 explore as tabelas no Colab. Outra ferramenta de BI não conta como Power BI.
 
 ## Medidas sobre o agregado mensal
