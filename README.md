@@ -54,15 +54,10 @@ pytest -q
 
 O comando de ingestão baixa diretamente o arquivo oficial. `--arquivo caminho.csv` lê uma cópia local e registra essa origem como local. Consulte `data/releases/2025-01/<release>/manifesto.json` e `quarentena.json`; os arquivos atuais de análise são os da pasta indicada por `data/exports/CURRENT.json`. O arquivo `dbt/target/static_index.html` contém a documentação gerada. Dados, bancos, resultados e credenciais permanecem fora do Git. Para executar com BigQuery, siga o guia de Sandbox, em vez de pressupor que a conta é gratuita.
 
-## Competências demonstradas
+## Decisões e próximos experimentos
 
-| Requisito da vaga | Evidência nesta versão |
-|---|---|
-| Python, SQL, modelagem relacional/dimensional, BigQuery SQL portátil | Ingestão, validação, 7 modelos dbt, dimensões, fato e agregado; BigQuery ainda não executado |
-| Git, documentação, Data Quality e CI/CD | Histórico do repositório, contrato, 26 testes dbt, testes Python e GitHub Actions |
-| Grandes volumes e análise | Mais de 1 milhão de linhas reais de 2025; Parquet, DuckDB e exportação em lotes |
-| GCP, BigQuery e IAM | Código e guia de Sandbox/IAM; experiência real pendente de autenticação e execução |
-| Power BI | Modelo e medidas preparados; dashboard real pendente de conta elegível |
-| GCS, Pub/Sub, processamento em tempo real | Não cobertos neste projeto |
+Este é um estudo de dados históricos, não um monitor de voos em tempo real. A parte reproduzível roda com Python, Parquet, DuckDB e dbt: preserva o arquivo original, explica as exclusões, constrói um fato por etapa e oferece agregações para investigar rotas e companhias. Os [testes](tests/) exercitam casos limítrofes dos indicadores e verificam que corrupção e conflitos interrompem a publicação. Os workflows de [qualidade](.github/workflows/qualidade.yml) e [carga manual da ANAC](.github/workflows/carga-anac.yml) permitem repetir essas verificações sem guardar a base no GitHub.
 
-Os workflows de [qualidade](.github/workflows/qualidade.yml), [carga manual da ANAC](.github/workflows/carga-anac.yml) e [documentação opcional](.github/workflows/publicar-documentacao.yml) separam testes sintéticos de dados oficiais. A publicação de documentação por GitHub Pages é manual e usa **somente a fixture sintética**; exige habilitar Pages nas configurações do repositório. Nenhum workflow publica dados brutos nem armazena credenciais GCP. Consulte a fonte [VRA da ANAC](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/voo-regular-ativo-vra/62-voo-regular-ativo-vra).
+Há dois caminhos para continuar a pesquisa. O [código de BigQuery](src/observatorio/bigquery.py) permite comparar a implementação local com um projeto Sandbox sem faturamento, sujeito à autenticação e às quotas da conta. Os CSVs também podem alimentar um relatório; o [guia de Power BI](docs/POWER_BI.md) documenta medidas e relacionamentos para quem tiver acesso ao serviço. Essas etapas ainda não produziram resultados neste repositório. GCS e Pub/Sub não fazem parte do recorte atual, que usa arquivos mensais históricos.
+
+A [documentação dbt opcional](.github/workflows/publicar-documentacao.yml) pode ser publicada manualmente no GitHub Pages após habilitar Pages nas configurações. Ela usa **somente a fixture sintética** e não representa os resultados anuais. Nenhum workflow publica dados brutos nem armazena credenciais GCP. Fonte: [VRA da ANAC](https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/voo-regular-ativo-vra/62-voo-regular-ativo-vra).
